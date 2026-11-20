@@ -61,19 +61,23 @@ public class FilterContactTypeViewModel extends BaseBottomSheetViewModel {
     }
 
     private void updateFilterContactTypes() {
-        // создайте массив строк. Для инициализации используйте метод ContactType.getContactTypes(),
-        // который должен возвращать список всех доступных источников контактов
         String[] contactType = ContactType.getContactTypes();
 
-        // создайте список типа FilterContactTypeUi и заполните его с помощью цикла forEach
         List<FilterContactTypeUi> filterContactTypeUis = new ArrayList<>();
 
-        // forEach должен бежать по строковому массиву, который вы создали ранее
+        filterContactTypeUis.add(createAllSelectedItem(contactType));
+
         for ( String contactTypes : contactType ) {
-            filterContactTypeUis.add(new FilterContactTypeUi(contactTypes));
+            filterContactTypeUis.add(createFilterContactType(contactTypes));
         }
-        // вызовите меотод setValue() у переменной filterContactTypesLiveDate и передайте в качестве аргументы ваш список типа FilterContactTypeUi
+
         filterContactTypesLiveDate.setValue(filterContactTypeUis);
+
+        // создайте массив строк. Для инициализации используйте метод ContactType.getContactTypes(),
+        // который должен возвращать список всех доступных источников контактов
+        // создайте список типа FilterContactTypeUi и заполните его с помощью цикла forEach
+        // forEach должен бежать по строковому массиву, который вы создали ранее
+        // вызовите меотод setValue() у переменной filterContactTypesLiveDate и передайте в качестве аргументы ваш список типа FilterContactTypeUi
     }
 
     @NonNull
